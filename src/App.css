@@ -10,16 +10,29 @@
   height: 35vh;
   margin: auto;
   border-radius: 2rem;
+  display: flex;
+  gap: 2vmax;
+}
+
+.color {
+  width: 15vmax;
+  border-radius: 2vmax;
+  cursor: pointer;
+}
+
+.hex-cntr {
+  width: 50%;
+  height: 10vmax;
+  margin: 2vmax auto;
+  border-radius: 2vmax;
+  background-color: #1a1a1a;
   display: grid;
   grid-template: 1fr / 1fr;
 }
 
-.color-cntr > div {
+.hex {
   justify-self: center;
   align-self: center;
-  font-size: 3rem;
-}
-
-.color-btn {
-  margin: 1rem;
+  font-size: 5vmin;
+  cursor: default;
 }
