@@ -36,3 +36,13 @@
   font-size: 5vmin;
   cursor: default;
 }
+
+@media only screen and (max-width: 750px) {
+  .color-cntr {
+    flex-flow: column nowrap;
+  }
+
+  .color {
+    width: 100%;
+  }
+}
