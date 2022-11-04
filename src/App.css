@@ -53,6 +53,8 @@
 }
 
 .hex {
+  grid-column: 1;
+  grid-row: 1;
   justify-self: center;
   align-self: center;
   font-size: 5vmin;
@@ -60,9 +62,11 @@
 }
 
 .progress-tracker {
-  width: 50%;
+  grid-column: 1;
+  grid-row: 1;
+  justify-self: start;
+  align-self: end;
   height: 0.5vmax;
-  background-color: red;
 }
 
 @media only screen and (max-width: 750px) {
