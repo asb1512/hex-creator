@@ -27,6 +27,6 @@ HexDisplay.propTypes = {
   correctColor: PropTypes.number.isRequired,
   currentRound: PropTypes.shape({
     correct: PropTypes.bool.isRequired,
-    disable: PropTypes.arrayOf(PropTypes.string).isRequired,
+    disable: PropTypes.arrayOf(PropTypes.number).isRequired,
   }).isRequired,
 };
