@@ -1,5 +1,6 @@
 import React from 'react';
 import { useTrail, animated } from '@react-spring/web';
+import PropTypes from 'prop-types';
 
 export default function Colors({
   active,
@@ -37,3 +38,10 @@ export default function Colors({
 
   return (renderColors);
 }
+
+Colors.propTypes = {
+  active: PropTypes.bool.isRequired,
+  setActive: PropTypes.func.isRequired,
+  hexData: PropTypes.arrayOf(PropTypes.string).isRequired,
+  verifyClick: PropTypes.func.isRequired,
+};
