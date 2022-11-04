@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import generateCorrectColor from '../../services/generateCorrectColor';
 import generateHexSet from '../../services/generateHexSet';
 import Colors from './Colors';
+import HexDisplay from './HexDisplay';
 
 export default function ColorContainer() {
   // sets three hex colors
@@ -46,10 +47,10 @@ export default function ColorContainer() {
           verifyClick={verifyClick}
         />
       </div>
-      <div className="hex-cntr">
-        <div className="hex">#{hexData[correctColor]}</div>
-        <div className="progress-tracker" />
-      </div>
+      <HexDisplay
+        hexData={hexData}
+        correctColor={correctColor}
+      />
     </>
   );
 }
