@@ -3,6 +3,7 @@ import generateCorrectColor from '../../services/generateCorrectColor';
 import generateHexSet from '../../services/generateHexSet';
 import Colors from './Colors';
 import HexDisplay from './HexDisplay';
+import './Color.css';
 
 export default function ColorContainer() {
   // sets three hex colors
@@ -38,7 +39,7 @@ export default function ColorContainer() {
   }, []);
 
   return (
-    <>
+    <main>
       <div className="color-cntr">
         <Colors
           active={active}
@@ -52,6 +53,6 @@ export default function ColorContainer() {
         correctColor={correctColor}
         currentRound={currentRound}
       />
-    </>
+    </main>
   );
 }
