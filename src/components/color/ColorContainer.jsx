@@ -12,7 +12,6 @@ export default function ColorContainer() {
   const [correctColor, setCorrectColor] = useState(generateCorrectColor());
   const [currentRound, setCurrentRound] = useState({
     correct: false,
-    incorrect: 0,
     disable: [],
   });
   // animation
@@ -21,18 +20,18 @@ export default function ColorContainer() {
   const verifyClick = (hex, idx) => {
     // correct click
     if (hexData[correctColor] === hex) {
-      setCurrentRound({ correct: true, incorrect: 0, disable: [] });
+      setCurrentRound({ correct: true, disable: [] });
       setActive(false);
       setTimeout(() => {
         setHexData(generateHexSet());
         setCorrectColor(generateCorrectColor());
-        setCurrentRound({ correct: false, incorrect: 0, disable: [] });
+        setCurrentRound({ correct: false, disable: [] });
       }, 750);
     } else {
       // incorrect click
+      if (currentRound.disable.includes(idx)) return;
       setCurrentRound((prevState) => ({
         correct: false,
-        incorrect: prevState.incorrect + 1,
         disable: prevState.disable.length > 0
           ? [...prevState.disable, idx]
           : [idx],
