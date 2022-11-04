@@ -1,0 +1,15 @@
+header {
+  grid-column: 1;
+  grid-row: 1;
+  width: 100%;
+  display: grid;
+  grid-template: 100% / 50% 50%;
+}
+
+header > img {
+  grid-column: 1;
+  grid-row: 1;
+  align-self: center;
+  width: 13vmax;
+  margin-left: 2vmax;
+}
