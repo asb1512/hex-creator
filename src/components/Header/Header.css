@@ -1,15 +1,33 @@
 header {
   grid-column: 1;
   grid-row: 1;
-  width: 100%;
+  width: calc(100% - 4vmax);
+  padding: 0 2vmax ;
   display: grid;
-  grid-template: 100% / 50% 50%;
+  grid-template: 100% / 1fr 1fr 1fr;
 }
 
-header > img {
+.site-logo {
   grid-column: 1;
   grid-row: 1;
   align-self: center;
   width: 13vmax;
-  margin-left: 2vmax;
+}
+
+.score-cntr {
+  grid-column: 2;
+  grid-row: 1;
+  justify-self: center;
+  align-self: center;
+}
+
+.score-title {
+  margin-bottom: 0.5vmax;
+  font-size: 2vmax;
+  font-weight: 200;
+}
+
+.score {
+  font-size: 2.5vmax;
+  font-weight: 600;
 }
