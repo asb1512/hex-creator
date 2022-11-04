@@ -26,17 +26,17 @@
 .color {
   width: 100%;
   height: 100%;
-  transition: all 500ms ease-in-out;
+  transition: all 375ms ease-in-out;
 }
 
 .color:hover {
-  transform: translate(0, -15%);
+  transform: translate(0, -10%);
 }
 
 .color-hover {
   align-self: end;
   width: 100%;
-  height: 15%;
+  height: 10%;
   background-color: white;
   z-index: 1;
 }
@@ -47,6 +47,7 @@
   margin: 2vmax auto;
   border-radius: 2vmax;
   background-color: #1a1a1a;
+  overflow: hidden;
   display: grid;
   grid-template: 1fr / 1fr;
 }
@@ -56,6 +57,12 @@
   align-self: center;
   font-size: 5vmin;
   cursor: default;
+}
+
+.progress-tracker {
+  width: 50%;
+  height: 0.5vmax;
+  background-color: red;
 }
 
 @media only screen and (max-width: 750px) {
