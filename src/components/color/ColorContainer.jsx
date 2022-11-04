@@ -50,6 +50,7 @@ export default function ColorContainer() {
       <HexDisplay
         hexData={hexData}
         correctColor={correctColor}
+        currentRound={currentRound}
       />
     </>
   );
