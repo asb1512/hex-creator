@@ -35,16 +35,15 @@ export default function ColorContainer() {
       key={hex}
       role="option"
       tabIndex={idx}
-      className="color"
+      className="color-wrapper"
       aria-label={`color option #${idx + 1}`}
       aria-selected
-      style={{
-        backgroundColor: `#${hex}`,
-        ...trails[idx],
-      }}
+      style={{ ...trails[idx] }}
       onClick={() => verifyClick(hex)}
       onKeyDown={(e) => verifyKeyDown(e, hex)}
-    />
+    >
+      <div className="color" style={{ backgroundColor: `#${hex}` }} />
+    </animated.div>
   ));
 
   useEffect(() => {
