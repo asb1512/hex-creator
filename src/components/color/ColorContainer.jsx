@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { useScore } from '../../context/ScoreProvider';
 import generateCorrectColor from '../../services/generateCorrectColor';
 import generateHexSet from '../../services/generateHexSet';
 import Colors from './Colors';
@@ -6,6 +7,7 @@ import HexDisplay from './HexDisplay';
 import './Color.css';
 
 export default function ColorContainer() {
+  const { dispatch } = useScore();
   // sets three hex colors
   const [hexData, setHexData] = useState(generateHexSet());
   // random selects one of three colors as the correct choice
@@ -27,6 +29,12 @@ export default function ColorContainer() {
         setCorrectColor(generateCorrectColor());
         setCurrentRound({ correct: false, disable: [] });
       }, 750);
+      if (currentRound.disable.length === 0) {
+        dispatch({ type: 'addOneHundred' });
+      }
+      if (currentRound.disable.length === 1) {
+        dispatch({ type: 'addFifty' });
+      }
     } else {
       // incorrect click
       if (currentRound.disable.includes(idx)) return;
