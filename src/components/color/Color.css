@@ -1,0 +1,81 @@
+main {
+  grid-column: 1;
+  grid-row: 2;
+  justify-self: center;
+  align-self: center;
+  width: 80%;
+}
+
+.color-cntr {
+  width: 50%;
+  height: 35vh;
+  margin: auto;
+  border-radius: 2rem;
+  display: flex;
+  gap: 2vmax;
+}
+
+.color-wrapper {
+  width: 15vmax;
+  z-index: 0;
+  border-radius: 2vmax;
+  background-color: white;
+  cursor: pointer;
+  overflow: hidden;
+}
+
+.color {
+  width: 100%;
+  height: 100%;
+  transition: all 375ms ease-in-out;
+}
+
+.color:hover {
+  transform: translate(0, -10%);
+}
+
+.color-hover {
+  align-self: end;
+  width: 100%;
+  height: 10%;
+  background-color: white;
+  z-index: 1;
+}
+
+.hex-cntr {
+  width: 50%;
+  height: 10vmax;
+  margin: 2vmax auto 0 auto;
+  border-radius: 2vmax;
+  background-color: #1a1a1a;
+  overflow: hidden;
+  display: grid;
+  grid-template: 1fr / 1fr;
+}
+
+.hex {
+  grid-column: 1;
+  grid-row: 1;
+  justify-self: center;
+  align-self: center;
+  font-size: 5vmin;
+  cursor: default;
+}
+
+.progress-tracker {
+  grid-column: 1;
+  grid-row: 1;
+  justify-self: start;
+  align-self: end;
+  height: 0.5vmax;
+}
+
+@media only screen and (max-width: 750px) {
+  .color-cntr {
+    flex-flow: column nowrap;
+  }
+
+  .color {
+    width: 100%;
+  }
+}

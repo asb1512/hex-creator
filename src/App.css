@@ -1,80 +1,13 @@
 #root {
-  width: 100%;
+  height: inherit;
   margin: 0 auto;
-  padding: 2rem;
   text-align: center;
 }
 
-.color-cntr {
-  width: 50%;
-  height: 35vh;
-  margin: auto;
-  border-radius: 2rem;
-  display: flex;
-  gap: 2vmax;
-}
-
-.color-wrapper {
-  width: 15vmax;
-  z-index: 0;
-  border-radius: 2vmax;
-  background-color: white;
-  cursor: pointer;
-  overflow: hidden;
-}
-
-.color {
+.App {
   width: 100%;
-  height: 100%;
-  transition: all 375ms ease-in-out;
-}
-
-.color:hover {
-  transform: translate(0, -10%);
-}
-
-.color-hover {
-  align-self: end;
-  width: 100%;
-  height: 10%;
-  background-color: white;
-  z-index: 1;
-}
-
-.hex-cntr {
-  width: 50%;
-  height: 10vmax;
-  margin: 2vmax auto;
-  border-radius: 2vmax;
-  background-color: #1a1a1a;
-  overflow: hidden;
+  height: 100vh;
   display: grid;
-  grid-template: 1fr / 1fr;
-}
-
-.hex {
-  grid-column: 1;
-  grid-row: 1;
-  justify-self: center;
-  align-self: center;
-  font-size: 5vmin;
-  cursor: default;
-}
-
-.progress-tracker {
-  grid-column: 1;
-  grid-row: 1;
-  justify-self: start;
-  align-self: end;
-  height: 0.5vmax;
-}
-
-@media only screen and (max-width: 750px) {
-  .color-cntr {
-    flex-flow: column nowrap;
-  }
-
-  .color {
-    width: 100%;
-  }
+  grid-template-columns: 100%;
+  grid-template-rows: 10% 90%;
 }
