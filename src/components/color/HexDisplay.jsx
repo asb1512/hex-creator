@@ -8,7 +8,9 @@ export default function HexDisplay({
   currentRound,
 }) {
   const progressSpring = useSpring({
-    width: currentRound.correct ? '100%' : `${currentRound.incorrect * 33}%`,
+    width: currentRound.correct
+      ? '100%'
+      : `${currentRound.disable.length * 33}%`,
     backgroundColor: currentRound.correct ? 'green' : 'red',
   });
 
@@ -25,6 +27,6 @@ HexDisplay.propTypes = {
   correctColor: PropTypes.number.isRequired,
   currentRound: PropTypes.shape({
     correct: PropTypes.bool.isRequired,
-    incorrect: PropTypes.number.isRequired,
+    disable: PropTypes.arrayOf(PropTypes.string).isRequired,
   }).isRequired,
 };
