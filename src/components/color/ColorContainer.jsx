@@ -11,29 +11,36 @@ export default function ColorContainer() {
   // random selects one of three colors as the correct choice
   const [correctColor, setCorrectColor] = useState(generateCorrectColor());
   const [currentRound, setCurrentRound] = useState({
-    correct: false, incorrect: 0,
+    correct: false,
+    incorrect: 0,
+    disable: [],
   });
-  console.log(currentRound);
   // animation
   const [active, setActive] = useState(false);
-
-  const verifyClick = (hex) => {
+  // checks whether a click is correct/incorrect
+  const verifyClick = (hex, idx) => {
+    // correct click
     if (hexData[correctColor] === hex) {
-      setCurrentRound({ correct: true, incorrect: 0 });
+      setCurrentRound({ correct: true, incorrect: 0, disable: [] });
       setActive(false);
       setTimeout(() => {
         setHexData(generateHexSet());
         setCorrectColor(generateCorrectColor());
-        setCurrentRound({ correct: false, incorrect: 0 });
+        setCurrentRound({ correct: false, incorrect: 0, disable: [] });
       }, 750);
     } else {
+      // incorrect click
       setCurrentRound((prevState) => ({
         correct: false,
         incorrect: prevState.incorrect + 1,
+        disable: prevState.disable.length > 0
+          ? [...prevState.disable, idx]
+          : [idx],
       }));
     }
   };
 
+  // starts animation after first render
   useEffect(() => {
     setActive(true);
   }, []);
@@ -45,6 +52,7 @@ export default function ColorContainer() {
           active={active}
           setActive={setActive}
           hexData={hexData}
+          disabled={currentRound.disable}
           verifyClick={verifyClick}
         />
       </div>
