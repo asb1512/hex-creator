@@ -6,6 +6,7 @@ export default function Colors({
   active,
   setActive,
   hexData,
+  disabled,
   verifyClick,
 }) {
   const verifyKeyDown = (e, hex) => {
@@ -16,7 +17,6 @@ export default function Colors({
 
   const trails = useTrail(3, {
     height: active ? '100%' : '0',
-    opacity: active ? 1 : 0,
     onRest: () => setActive(true),
   });
 
@@ -28,8 +28,8 @@ export default function Colors({
       className="color-wrapper"
       aria-label={`color option #${idx + 1}`}
       aria-selected
-      style={{ ...trails[idx] }}
-      onClick={() => verifyClick(hex)}
+      style={{ ...trails[idx], opacity: disabled?.includes(idx) ? 0.35 : 1 }}
+      onClick={() => verifyClick(hex, idx)}
       onKeyDown={(e) => verifyKeyDown(e, hex)}
     >
       <div className="color" style={{ backgroundColor: `#${hex}` }} />
@@ -43,5 +43,6 @@ Colors.propTypes = {
   active: PropTypes.bool.isRequired,
   setActive: PropTypes.func.isRequired,
   hexData: PropTypes.arrayOf(PropTypes.string).isRequired,
+  disabled: PropTypes.arrayOf(PropTypes.number).isRequired,
   verifyClick: PropTypes.func.isRequired,
 };
