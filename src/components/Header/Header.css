@@ -23,6 +23,7 @@ header {
 
 .score-title {
   margin-bottom: 0.5vmax;
+  line-height: 2.5vmax;
   font-size: 2vmax;
   font-weight: 200;
 }
