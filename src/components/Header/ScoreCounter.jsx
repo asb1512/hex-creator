@@ -1,9 +1,9 @@
 import React, { useEffect, useRef } from 'react';
 import { useCountUp } from 'react-countup';
-import { useScore } from '../../context/ScoreProvider';
+import { useAppContext } from '../../context/AppContext';
 
 export default function ScoreCounter() {
-  const { state: { score, prevScore } } = useScore();
+  const { state: { score, prevScore } } = useAppContext();
 
   const scoreRef = useRef(null);
   const { update } = useCountUp({
