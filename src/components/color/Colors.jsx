@@ -28,7 +28,10 @@ export default function Colors({
       className="color-wrapper"
       aria-label={`color option #${idx + 1}`}
       aria-selected
-      style={{ ...trails[idx], opacity: disabled?.includes(idx) ? 0.35 : 1 }}
+      style={{
+        ...trails[idx],
+        opacity: disabled?.includes(idx) ? 0.35 : 1,
+      }}
       onClick={() => verifyClick(hex, idx)}
       onKeyDown={(e) => verifyKeyDown(e, hex)}
     >
