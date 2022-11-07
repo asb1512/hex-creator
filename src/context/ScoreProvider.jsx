@@ -11,18 +11,21 @@ const ScoreContext = createContext();
 function scoreReducer(state, action) {
   switch (action.type) {
     case 'addTwentyFive':
-      return { score: state.score + 25 };
+      return { score: state.score + 25, prevScore: state.score };
     case 'addFifty':
-      return { score: state.score + 50 };
+      return { score: state.score + 50, prevScore: state.score };
     case 'addOneHundred':
-      return { score: state.score + 100 };
+      return { score: state.score + 100, prevScore: state.score };
     default:
       throw new Error(`Unhandled action type: ${action.type}`);
   }
 }
 
 function ScoreProvider({ children }) {
-  const [state, dispatch] = useReducer(scoreReducer, { score: 0 });
+  const [state, dispatch] = useReducer(scoreReducer, {
+    score: 0,
+    prevScore: 0,
+  });
   const value = useMemo(() => ({ state, dispatch }), [state]);
   return (
     <ScoreContext.Provider value={value}>{children}</ScoreContext.Provider>
