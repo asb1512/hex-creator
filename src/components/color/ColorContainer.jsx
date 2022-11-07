@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { useScore } from '../../context/ScoreProvider';
+import { useAppContext } from '../../context/AppContext';
 import generateCorrectColor from '../../services/generateCorrectColor';
 import generateHexSet from '../../services/generateHexSet';
 import Colors from './Colors';
@@ -7,7 +7,7 @@ import HexDisplay from './HexDisplay';
 import './Color.css';
 
 export default function ColorContainer() {
-  const { dispatch } = useScore();
+  const { dispatch } = useAppContext();
   // sets three hex colors
   const [hexData, setHexData] = useState(generateHexSet());
   // random selects one of three colors as the correct choice
