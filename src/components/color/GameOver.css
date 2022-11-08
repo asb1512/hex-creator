@@ -1,0 +1,24 @@
+.game-over {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(1rem);
+  display: grid;
+  grid-template: 1fr / 1fr;
+}
+
+.game-over-msg {
+  grid-column: 1;
+  grid-row: 1;
+  justify-self: center;
+  align-self: center;
+  line-height: 4vmax;
+  font-size: 4vmax;
+}
+
+.game-over-msg > span {
+  font-weight: 600;
+}
