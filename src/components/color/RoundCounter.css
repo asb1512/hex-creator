@@ -1,5 +1,7 @@
 .round-counter {
+  width: 50%;
   margin: 0 auto 2vmax auto;
+  text-align: end;
   font-size: 2vmax;
   font-weight: 600;
 }
