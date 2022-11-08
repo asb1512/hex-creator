@@ -55,7 +55,7 @@ function contextReducer(state, action) {
 
 function ContextProvider({ children }) {
   const [state, dispatch] = useReducer(contextReducer, {
-    round: 9,
+    round: 1,
     score: 0,
     prevScore: 0,
     mobile: false,
