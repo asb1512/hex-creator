@@ -32,6 +32,8 @@ export default function ColorContainer({ gameActive }) {
   const [active, setActive] = useState(false);
   // checks whether a click is correct/incorrect
   const verifyClick = (hex, idx) => {
+    // if game is over no clicks are valid
+    if (round > 10) return;
     // correct click
     if (hexData[correctColor] === hex) {
       setCurrentRound({ correct: true, disable: [] });
