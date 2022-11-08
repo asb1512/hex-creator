@@ -1,6 +1,7 @@
 import React from 'react';
 import { useTransition, animated } from '@react-spring/web';
 import { useAppContext } from '../../context/AppContext';
+import StartButton from '../Welcome/StartButton';
 import './GameOver.css';
 
 function GameOver({ gameOver }) {
@@ -19,6 +20,7 @@ function GameOver({ gameOver }) {
         <br />
         <span>{score}</span>
       </div>
+      <StartButton />
     </animated.div>
   ));
 }
