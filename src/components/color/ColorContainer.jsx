@@ -2,12 +2,16 @@ import React, { useState, useEffect } from 'react';
 import { useAppContext } from '../../context/AppContext';
 import generateCorrectColor from '../../services/generateCorrectColor';
 import generateHexSet from '../../services/generateHexSet';
+import RoundCounter from './RoundCounter';
 import Colors from './Colors';
 import HexDisplay from './HexDisplay';
+import GameOver from './GameOver';
 import './Color.css';
 
 export default function ColorContainer() {
-  const { dispatch } = useAppContext();
+  const { dispatch, state: { round } } = useAppContext();
+  // boolean if game is still continuing
+  const [gameOver, setGameOver] = useState(false);
   // sets three hex colors
   const [hexData, setHexData] = useState(generateHexSet());
   // random selects one of three colors as the correct choice
@@ -24,6 +28,7 @@ export default function ColorContainer() {
     if (hexData[correctColor] === hex) {
       setCurrentRound({ correct: true, disable: [] });
       setActive(false);
+      dispatch({ type: 'incrementRound' });
       setTimeout(() => {
         setHexData(generateHexSet());
         setCorrectColor(generateCorrectColor());
@@ -52,8 +57,18 @@ export default function ColorContainer() {
     setActive(true);
   }, []);
 
+  // sets game status to false after 10 rounds
+  useEffect(() => {
+    if (round <= 10) {
+      setGameOver(false);
+    } else {
+      setGameOver(true);
+    }
+  }, [round]);
+
   return (
     <main>
+      <RoundCounter />
       <div className="color-cntr">
         <Colors
           active={active}
@@ -68,6 +83,11 @@ export default function ColorContainer() {
         correctColor={correctColor}
         currentRound={currentRound}
       />
+      {
+        gameOver
+          ? <GameOver gameOver={gameOver} />
+          : null
+      }
     </main>
   );
 }
