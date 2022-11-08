@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useAppContext } from './context/AppContext';
 import Header from './components/Header/Header';
 import ColorContainer from './components/color/ColorContainer';
+import StartButton from './components/Welcome/StartButton';
 import './App.css';
 
 function App() {
@@ -29,10 +30,16 @@ function App() {
     return () => window.removeEventListener('resize', detectAppSize);
   }, [appWidth]);
 
+  const [gameActive, setGameStatus] = useState(false);
+
   return (
     <div className="App">
-      <Header />
-      <ColorContainer />
+      <Header gameActive={gameActive} />
+      {
+        gameActive
+          ? <ColorContainer gameActive={gameActive} />
+          : <StartButton setGameStatus={setGameStatus} />
+      }
     </div>
   );
 }
