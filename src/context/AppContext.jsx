@@ -15,6 +15,13 @@ function contextReducer(state, action) {
         ...state,
         mobile: action.payload,
       };
+    case 'restartGame':
+      return {
+        round: 1,
+        score: 0,
+        prevScore: 0,
+        mobile: false,
+      };
     case 'incrementRound':
       return {
         ...state,
@@ -48,7 +55,7 @@ function contextReducer(state, action) {
 
 function ContextProvider({ children }) {
   const [state, dispatch] = useReducer(contextReducer, {
-    round: 1,
+    round: 9,
     score: 0,
     prevScore: 0,
     mobile: false,
