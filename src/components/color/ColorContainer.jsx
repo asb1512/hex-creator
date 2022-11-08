@@ -1,4 +1,6 @@
 import React, { useState, useEffect } from 'react';
+import { useTransition, animated } from '@react-spring/web';
+import PropTypes from 'prop-types';
 import { useAppContext } from '../../context/AppContext';
 import generateCorrectColor from '../../services/generateCorrectColor';
 import generateHexSet from '../../services/generateHexSet';
@@ -8,8 +10,14 @@ import HexDisplay from './HexDisplay';
 import GameOver from './GameOver';
 import './Color.css';
 
-export default function ColorContainer() {
+export default function ColorContainer({ gameActive }) {
   const { dispatch, state: { round } } = useAppContext();
+
+  const transitions = useTransition(gameActive, {
+    from: { opacity: 0 },
+    enter: { opacity: 1 },
+    leave: { opacity: 0 },
+  });
   // boolean if game is still continuing
   const [gameOver, setGameOver] = useState(false);
   // sets three hex colors
@@ -66,8 +74,8 @@ export default function ColorContainer() {
     }
   }, [round]);
 
-  return (
-    <main>
+  return transitions((styles) => (
+    <animated.main style={styles}>
       <RoundCounter />
       <div className="color-cntr">
         <Colors
@@ -88,6 +96,10 @@ export default function ColorContainer() {
           ? <GameOver gameOver={gameOver} />
           : null
       }
-    </main>
-  );
+    </animated.main>
+  ));
 }
+
+ColorContainer.propTypes = {
+  gameActive: PropTypes.bool.isRequired,
+};
