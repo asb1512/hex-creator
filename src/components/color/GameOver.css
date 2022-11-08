@@ -7,8 +7,10 @@
   background-color: rgba(0, 0, 0, 0.5);
   backdrop-filter: blur(1rem);
   -webkit-backdrop-filter: blur(1rem);
-  display: grid;
-  grid-template: 1fr / 1fr;
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: center;
+  gap: 1rem;
 }
 
 .game-over-msg {
