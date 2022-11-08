@@ -7,8 +7,11 @@ function RoundCounter() {
 
   return (
     <div className="round-counter">
-      {round}
-      /10
+      {
+        round <= 10
+          ? `${round}/10`
+          : null
+      }
     </div>
   );
 }
