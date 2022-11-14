@@ -30,13 +30,16 @@ function App() {
     return () => window.removeEventListener('resize', detectAppSize);
   }, [appWidth]);
 
-  const [gameActive, setGameStatus] = useState(false);
+  const [gameActive, setGameStatus] = useState({
+    status: false,
+    difficulty: 3,
+  });
 
   return (
     <div className="App">
       <Header gameActive={gameActive} />
       {
-        gameActive
+        gameActive.status
           ? <ColorContainer gameActive={gameActive} />
           : <StartButton setGameStatus={setGameStatus} />
       }

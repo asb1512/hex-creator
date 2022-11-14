@@ -1,3 +1,3 @@
-export default function generateCorrectColor() {
-  return Math.floor(Math.random() * 3);
+export default function generateCorrectColor(num) {
+  return Math.floor(Math.random() * num);
 }

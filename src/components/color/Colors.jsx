@@ -15,7 +15,7 @@ export default function Colors({
     }
   };
 
-  const trails = useTrail(3, {
+  const trails = useTrail(hexData.length, {
     height: active ? '100%' : '0',
     onRest: () => setActive(true),
   });

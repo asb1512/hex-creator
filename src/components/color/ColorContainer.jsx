@@ -13,7 +13,7 @@ import './Color.css';
 export default function ColorContainer({ gameActive }) {
   const { dispatch, state: { round } } = useAppContext();
 
-  const transitions = useTransition(gameActive, {
+  const transitions = useTransition(gameActive.status, {
     from: { opacity: 0 },
     enter: { opacity: 1 },
     leave: { opacity: 0 },
@@ -21,9 +21,11 @@ export default function ColorContainer({ gameActive }) {
   // boolean if game is still continuing
   const [gameOver, setGameOver] = useState(false);
   // sets three hex colors
-  const [hexData, setHexData] = useState(generateHexSet());
+  const [hexData, setHexData] = useState(generateHexSet(gameActive.difficulty));
   // random selects one of three colors as the correct choice
-  const [correctColor, setCorrectColor] = useState(generateCorrectColor());
+  const [correctColor, setCorrectColor] = useState(
+    generateCorrectColor(gameActive.difficulty),
+  );
   const [currentRound, setCurrentRound] = useState({
     correct: false,
     disable: [],
@@ -40,8 +42,8 @@ export default function ColorContainer({ gameActive }) {
       setActive(false);
       dispatch({ type: 'incrementRound' });
       setTimeout(() => {
-        setHexData(generateHexSet());
-        setCorrectColor(generateCorrectColor());
+        setHexData(generateHexSet(gameActive.difficulty));
+        setCorrectColor(generateCorrectColor(gameActive.difficulty));
         setCurrentRound({ correct: false, disable: [] });
       }, 750);
       if (currentRound.disable.length === 0) {
@@ -66,6 +68,20 @@ export default function ColorContainer({ gameActive }) {
   useEffect(() => {
     setActive(true);
   }, []);
+
+  // moves on to next round after 3 incorrect attempts
+  useEffect(() => {
+    if (currentRound.disable.length >= 3) {
+      setCurrentRound({ correct: false, disable: [] });
+      setActive(false);
+      dispatch({ type: 'incrementRound' });
+      setTimeout(() => {
+        setHexData(generateHexSet(gameActive.difficulty));
+        setCorrectColor(generateCorrectColor(gameActive.difficulty));
+        setCurrentRound({ correct: false, disable: [] });
+      }, 750);
+    }
+  }, [currentRound.disable]);
 
   // sets game status to false after 10 rounds
   useEffect(() => {
