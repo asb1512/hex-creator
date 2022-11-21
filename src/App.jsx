@@ -6,7 +6,7 @@ import StartButton from './components/Welcome/StartButton';
 import './App.css';
 
 function App() {
-  const { dispatch } = useAppContext();
+  const { dispatch, state: { round } } = useAppContext();
   const [appWidth, setAppWidth] = useState({
     winWidth: window.innerWidth,
     winHeight: window.innerHeight,
@@ -30,18 +30,13 @@ function App() {
     return () => window.removeEventListener('resize', detectAppSize);
   }, [appWidth]);
 
-  const [gameActive, setGameStatus] = useState({
-    status: false,
-    difficulty: 3,
-  });
-
   return (
     <div className="App">
-      <Header gameActive={gameActive} />
+      <Header />
       {
-        gameActive.status
-          ? <ColorContainer gameActive={gameActive} />
-          : <StartButton setGameStatus={setGameStatus} />
+        round
+          ? <ColorContainer />
+          : <StartButton />
       }
     </div>
   );
