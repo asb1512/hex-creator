@@ -1,10 +1,9 @@
 import React, { useState } from 'react';
-import PropTypes from 'prop-types';
 import { useTrail, animated } from '@react-spring/web';
 import { useAppContext } from '../../context/AppContext';
 import styles from './StartButton.module.css';
 
-function StartButton({ setGameStatus }) {
+function StartButton() {
   const { dispatch } = useAppContext();
 
   const [gameHasDifficulty, setGameDifficulty] = useState(false);
@@ -14,21 +13,15 @@ function StartButton({ setGameStatus }) {
   };
 
   const handleDifficultyClick = (difficulty) => {
-    // user's first game
-    // if (setGameStatus) {
-    //   setGameStatus(true);
-    // } else {
-    //   dispatch({ type: 'restartGame' });
-    // }
     switch (difficulty) {
       case 'Easy':
-        setGameStatus({ status: true, difficulty: 3 });
+        dispatch({ type: 'restartGame', payload: 3 });
         break;
       case 'Medium':
-        setGameStatus({ status: true, difficulty: 5 });
+        dispatch({ type: 'restartGame', payload: 5 });
         break;
       case 'Hard':
-        setGameStatus({ status: true, difficulty: 7 });
+        dispatch({ type: 'restartGame', payload: 7 });
         break;
       default:
         break;
@@ -82,7 +75,3 @@ function StartButton({ setGameStatus }) {
 }
 
 export default StartButton;
-
-StartButton.propTypes = {
-  setGameStatus: PropTypes.func.isRequired,
-};
