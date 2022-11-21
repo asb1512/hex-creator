@@ -15,12 +15,19 @@ function contextReducer(state, action) {
         ...state,
         mobile: action.payload,
       };
+    case 'gameOver':
+      return {
+        ...state,
+        gameOver: true,
+      };
     case 'restartGame':
       return {
-        round: 1,
+        ...state,
+        difficulty: action.payload,
+        round: 10,
         score: 0,
         prevScore: 0,
-        mobile: false,
+        gameOver: false,
       };
     case 'incrementRound':
       return {
@@ -55,9 +62,11 @@ function contextReducer(state, action) {
 
 function ContextProvider({ children }) {
   const [state, dispatch] = useReducer(contextReducer, {
-    round: 1,
+    difficulty: null,
+    round: null,
     score: 0,
     prevScore: 0,
+    gameOver: false,
     mobile: false,
   });
   const value = useMemo(() => ({ state, dispatch }), [state]);
