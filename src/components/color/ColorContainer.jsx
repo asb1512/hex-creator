@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import { useTransition, animated } from '@react-spring/web';
-import PropTypes from 'prop-types';
 import { useAppContext } from '../../context/AppContext';
 import generateCorrectColor from '../../services/generateCorrectColor';
 import generateHexSet from '../../services/generateHexSet';
@@ -10,21 +9,20 @@ import HexDisplay from './HexDisplay';
 import GameOver from './GameOver';
 import './Color.css';
 
-export default function ColorContainer({ gameActive }) {
-  const { dispatch, state: { round } } = useAppContext();
+export default function ColorContainer() {
+  const { dispatch, state: { difficulty, round, gameOver } } = useAppContext();
 
-  const transitions = useTransition(gameActive.status, {
+  const transitions = useTransition((!gameOver), {
     from: { opacity: 0 },
     enter: { opacity: 1 },
     leave: { opacity: 0 },
   });
-  // boolean if game is still continuing
-  const [gameOver, setGameOver] = useState(false);
+
   // sets three hex colors
-  const [hexData, setHexData] = useState(generateHexSet(gameActive.difficulty));
+  const [hexData, setHexData] = useState(generateHexSet(difficulty));
   // random selects one of three colors as the correct choice
   const [correctColor, setCorrectColor] = useState(
-    generateCorrectColor(gameActive.difficulty),
+    generateCorrectColor(difficulty),
   );
   const [currentRound, setCurrentRound] = useState({
     correct: false,
@@ -42,8 +40,8 @@ export default function ColorContainer({ gameActive }) {
       setActive(false);
       dispatch({ type: 'incrementRound' });
       setTimeout(() => {
-        setHexData(generateHexSet(gameActive.difficulty));
-        setCorrectColor(generateCorrectColor(gameActive.difficulty));
+        setHexData(generateHexSet(difficulty));
+        setCorrectColor(generateCorrectColor(difficulty));
         setCurrentRound({ correct: false, disable: [] });
       }, 750);
       if (currentRound.disable.length === 0) {
@@ -76,21 +74,24 @@ export default function ColorContainer({ gameActive }) {
       setActive(false);
       dispatch({ type: 'incrementRound' });
       setTimeout(() => {
-        setHexData(generateHexSet(gameActive.difficulty));
-        setCorrectColor(generateCorrectColor(gameActive.difficulty));
+        setHexData(generateHexSet(difficulty));
+        setCorrectColor(generateCorrectColor(difficulty));
         setCurrentRound({ correct: false, disable: [] });
       }, 750);
     }
   }, [currentRound.disable]);
 
-  // sets game status to false after 10 rounds
+  // resets app state after tenth round
   useEffect(() => {
-    if (round <= 10) {
-      setGameOver(false);
-    } else {
-      setGameOver(true);
+    if (round > 10) {
+      dispatch({ type: 'gameOver' });
     }
   }, [round]);
+
+  // when diffculty changes, colors re-render
+  useEffect(() => {
+    setHexData(generateHexSet(difficulty));
+  }, [difficulty]);
 
   return transitions((styles) => (
     <animated.main style={styles}>
@@ -111,13 +112,9 @@ export default function ColorContainer({ gameActive }) {
       />
       {
         gameOver
-          ? <GameOver gameOver={gameOver} />
+          ? <GameOver />
           : null
       }
     </animated.main>
   ));
 }
-
-ColorContainer.propTypes = {
-  gameActive: PropTypes.bool.isRequired,
-};
