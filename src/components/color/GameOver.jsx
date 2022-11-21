@@ -4,8 +4,8 @@ import { useAppContext } from '../../context/AppContext';
 import StartButton from '../Welcome/StartButton';
 import './GameOver.css';
 
-function GameOver({ gameOver }) {
-  const { state: { score } } = useAppContext();
+function GameOver() {
+  const { state: { gameOver, score } } = useAppContext();
 
   const transitions = useTransition(gameOver, {
     from: { opacity: 0 },
