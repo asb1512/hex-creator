@@ -28,7 +28,14 @@
 .middle {
   border-radius: 0;
 }
+.middle:hover {
+  border: 1px solid var(--yellow);
+}
 
 .bottom {
   border-radius: 0 0 1vmax 1vmax;
+}
+
+.bottom:hover {
+  border: 1px solid var(--red);
 }
