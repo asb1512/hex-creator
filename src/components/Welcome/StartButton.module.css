@@ -15,6 +15,10 @@
   font-size: 1.5vmax;
 }
 
+.btn:hover {
+  color: var(--blue);
+}
+
 .secondary {
   padding: 1vmax 0;
   font-size: 1.2vmax;
@@ -30,6 +34,7 @@
 }
 .middle:hover {
   border: 1px solid var(--yellow);
+  color: var(--yellow);
 }
 
 .bottom {
@@ -38,4 +43,5 @@
 
 .bottom:hover {
   border: 1px solid var(--red);
+  color: var(--red);
 }
