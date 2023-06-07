@@ -7,6 +7,7 @@ export default function HexDisplay({
   correctColor,
   currentRound,
 }) {
+  console.log('hex data', hexData)
   const progressSpring = useSpring({
     width: currentRound.correct
       ? '100%'

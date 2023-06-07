@@ -1,3 +1,4 @@
+
 const hexTable = {
   10: 'A',
   11: 'B',
@@ -11,7 +12,7 @@ function generateRandomInt() {
   return Math.floor(Math.random() * 16);
 }
 
-function convertToHex(inputArray) {
+function convertToHex(inputArray: number[]) {
   return inputArray.map((int) => {
     if (int >= 0 && int <= 9) {
       return int;

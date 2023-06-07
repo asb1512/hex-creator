@@ -24,7 +24,7 @@ function contextReducer(state, action) {
       return {
         ...state,
         difficulty: action.payload,
-        round: 10,
+        round: 1,
         score: 0,
         prevScore: 0,
         gameOver: false,

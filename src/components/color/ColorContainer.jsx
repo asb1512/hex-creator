@@ -11,8 +11,8 @@ import './Color.css';
 
 export default function ColorContainer() {
   const { dispatch, state: { difficulty, round, gameOver } } = useAppContext();
-
-  const transitions = useTransition((!gameOver), {
+  console.log('ColorContainer difficulty', difficulty)
+  const transitions = useTransition(!gameOver, {
     from: { opacity: 0 },
     enter: { opacity: 1 },
     leave: { opacity: 0 },
