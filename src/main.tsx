@@ -1,4 +1,3 @@
-import React from 'react';
 import ReactDOM from 'react-dom/client';
 import { ContextProvider } from './context/AppContext';
 import App from './App';
